@@ -1,9 +1,14 @@
 #include<bits/stdc++.h>
 #include<unistd.h>
 #define pb push_back
-#define GREEN "\x1B[32m"
 #define underline "\033[4m"
 #define DEFAULT "\x1B[0m"
+#define RED "\x1B[31m"
+#define GREEN "\x1B[32m"
+#define YELLOW "\x1B[33m"
+#define BLUE "\x1B[34m"
+#define MAGENTA "\x1B[35m"
+#define CYAN "\x1B[36m"
 using namespace std;
 
 // 8 search directions
@@ -90,17 +95,41 @@ int main(){
 		cout<<"Tidak ada solusi yang ditemukan!"<<endl;
 		return 0;
 	}
+	int curcol=1;
 	for(auto i:ans){
 		while(i.l--){ //set color
-			col[i.x][i.y]=1;
+			col[i.x][i.y]=curcol;
 			i.x+=dx[i.dir];
 			i.y+=dy[i.dir];
 		}
+		curcol++;
+		if(curcol>6)curcol-=6;
 	}
+	
 	for(int i=0;i<n;i++){
 		for(int j=0;j<m;j++){ //print everything
-			if(!col[i][j])printf("%c ",arr[i][j]);
-			else printf("%s%c%s ",underline,arr[i][j],DEFAULT);
+			switch(col[i][j]){
+				case 1:
+					printf("%s%s%c%s ",underline,RED,arr[i][j],DEFAULT);
+					break;
+				case 2:
+					printf("%s%s%c%s ",underline,GREEN,arr[i][j],DEFAULT);
+					break;
+				case 3:
+					printf("%s%s%c%s ",underline,YELLOW,arr[i][j],DEFAULT);
+					break;
+				case 4:
+					printf("%s%s%c%s ",underline,BLUE,arr[i][j],DEFAULT);
+					break;
+				case 5:
+					printf("%s%s%c%s ",underline,MAGENTA,arr[i][j],DEFAULT);
+					break;
+				case 6:
+					printf("%s%s%c%s ",underline,CYAN,arr[i][j],DEFAULT);
+					break;
+				default:
+					printf("%c ",arr[i][j]);
+			}
 		}
 		printf("\n");
 	}
