@@ -1,7 +1,7 @@
 # STIMA-TC1
 Tugas Kecil Pertama STIMA (13520163 Frederik Imanuel Louis)
 
-### Petunjuk Penggunaaan
+### Petunjuk Penggunaan
 
 - main.exe harus berada pada direktori utama
 
