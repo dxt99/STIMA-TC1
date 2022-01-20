@@ -146,6 +146,7 @@ int main(){
 	cout<<endl;
 	cout<<"Waktu eksekusi program: "<< duration.count()<<" mikrosekon"<<endl;
 	cout<<"Banyak perbandingan yang dilakukan: "<<cnt<<" perbandingan"<<endl;
+	cout<<"Banyak kata yang ditemukan: "<<ans.size()<<"/"<<k<<endl;
 	
 	return 0;
 }
