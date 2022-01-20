@@ -87,6 +87,7 @@ int main(){
 						x+=dx[d];
 						y+=dy[d];
 						idx++;
+						while(word[idx]==' ')idx++;
 					}
 					if(idx==word.size()){ //ans found
 						info temp={i,j,d,idx};
