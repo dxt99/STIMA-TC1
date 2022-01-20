@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 #include<unistd.h>
+#include<chrono>
 #define pb push_back
 #define underline "\033[4m"
 #define DEFAULT "\x1B[0m"
@@ -10,6 +11,7 @@
 #define MAGENTA "\x1B[35m"
 #define CYAN "\x1B[36m"
 using namespace std;
+using namespace std::chrono;
 
 // 8 search directions
 int dx[8]={0,0,1,1,1,-1,-1,-1};
@@ -43,6 +45,8 @@ bool inside(int x,int y){
 
 // Main
 int main(){
+	// time and comparison counter
+	int cnt=0;
 	// input
 	string filename;
 	cout<<"Masukkan nama file: ";
@@ -57,6 +61,7 @@ int main(){
 	int t=0; // puzzle idx
 	string temp;
 	while(getline(in,temp)){
+		if(temp.size()==0)continue;
 		if(temp[1]==' '||temp[1]=='\n'){
 			for(int i=0;i<temp.size();i+=2)arr[t].pb(temp[i]);
 			t++;
@@ -69,6 +74,7 @@ int main(){
 	k=s.size();
 	
 	// search
+	auto start = high_resolution_clock::now();
 	for(int i=0;i<n;i++){ //iterate over coordinates
 		for(int j=0;j<m;j++){
 			for(auto word:s){ //iterate over words
@@ -77,6 +83,7 @@ int main(){
 					int x=i;
 					int y=j;
 					while(inside(x,y)&&idx<word.size()&&word[idx]==arr[x][y]){
+						cnt++;
 						x+=dx[d];
 						y+=dy[d];
 						idx++;
@@ -133,4 +140,11 @@ int main(){
 		}
 		printf("\n");
 	}
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop - start);
+	cout<<endl;
+	cout<<"Waktu eksekusi program: "<< duration.count()<<" mikrosekon"<<endl;
+	cout<<"Banyak perbandingan yang dilakukan: "<<cnt<<" perbandingan"<<endl;
+	
+	return 0;
 }
