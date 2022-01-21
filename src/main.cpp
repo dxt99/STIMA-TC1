@@ -51,7 +51,7 @@ int main(){
 	string filename;
 	cout<<"Masukkan nama file: ";
 	cin>>filename;
-	filename="test/"+filename+".txt";
+	filename="../test/"+filename+".txt";
 	ifstream in;
 	in.open(filename);
 	if(!in){
